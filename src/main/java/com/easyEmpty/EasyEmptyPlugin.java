@@ -78,6 +78,11 @@ public class EasyEmptyPlugin extends Plugin
 			ItemID.COLOSSAL_POUCH_26786
 	};
 
+	int[] diaryCapes = {
+		19476,
+		13069
+	}
+
 	private static final WorldArea zmi = new WorldArea(new WorldPoint(3050, 5573, 0), 20, 20);
 
 	boolean bankFill, swapStam, swapNeck, emptyPouches;
@@ -94,6 +99,8 @@ public class EasyEmptyPlugin extends Plugin
 		bankFill = config.bankFill();
 		swapStam = config.swapStam();
 		swapNeck = config.swapNeck();
+		diaryCape = config.diaryCape();
+		maxCape = config.maxCape();
 		emptyPouches = config.emptyPouches();
 		log.info("Easy Empty  started!");
 	}
@@ -162,9 +169,7 @@ public class EasyEmptyPlugin extends Plugin
 						break;
 					}
 				}
-				if (emptyIdx == -1) {
-					return;
-				}
+				if (emptyIdx != -1) {
 
 				MenuEntry entry1 = menuEntries[emptyIdx];
 				MenuEntry entry2 = menuEntries[topIdx];
@@ -173,6 +178,28 @@ public class EasyEmptyPlugin extends Plugin
 				menuEntries[topIdx] = entry1;
 
 				client.setMenuEntries(menuEntries);
+			}
+			}
+			if (diaryCape && ArrayUtils.contains(diaryCapes, menuEntries[menuEntries.length -1].getItemId())) {
+				int desertIdx = -1;
+				int topIdx = menuEntries.length - 1;
+				for (int i = 0; i < topIdx; i++) {
+
+					if (Text.removeTags(menuEntries[i].getOption()).equals("Desert")) {
+						desertIdx = i;
+						break;
+					}
+				}
+				if (desertIdx != -1) {
+
+				MenuEntry entry1 = menuEntries[desertIdx];
+				MenuEntry entry2 = menuEntries[topIdx];
+
+				menuEntries[desertIdx] = entry2;
+				menuEntries[topIdx] = entry1;
+
+				client.setMenuEntries(menuEntries);
+			}
 			}
 		}
 	}
@@ -185,6 +212,10 @@ public class EasyEmptyPlugin extends Plugin
 				case "bankFill":	bankFill = config.bankFill();
 									break;
 				case "swapNeck":	swapNeck = config.swapNeck();
+									break;
+				case "diaryCape":	diaryCape = config.diaryCape();
+									break;
+				case "maxCape":	maxCape = config.maxCape();
 									break;
 				case "swapStam":	swapStam = config.swapStam();
 									break;
