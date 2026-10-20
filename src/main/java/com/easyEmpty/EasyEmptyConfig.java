@@ -55,12 +55,12 @@ public interface EasyEmptyConfig extends Config
         return true;
     }
     @ConfigItem(keyName = "maxCape", name = "Max Cape swaps", description = "Left-click crafting guild when near altar", position = 5)
-    default boolean swapNeck()
+    default boolean maxCape()
     {
         return true;
     }
     @ConfigItem(keyName = "diaryCape", name = "Diary Cape swaps", description = "Left-click desert when near altar", position = 6)
-    default boolean swapNeck()
+    default boolean diaryCape()
     {
         return true;
     }
