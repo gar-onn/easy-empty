@@ -81,11 +81,11 @@ public class EasyEmptyPlugin extends Plugin
 	int[] diaryCapes = {
 		19476,
 		13069
-	}
+	};
 
 	private static final WorldArea zmi = new WorldArea(new WorldPoint(3050, 5573, 0), 20, 20);
 
-	boolean bankFill, swapStam, swapNeck, emptyPouches;
+	boolean bankFill, swapStam, swapNeck, emptyPouches,diaryCape,maxCape;
 
 	@Inject
 	private Client client;
